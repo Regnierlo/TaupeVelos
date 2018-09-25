@@ -2,12 +2,12 @@
 
   // Parametres de configuration de la connexion
   // -> permet de porter l'application en ne modifiant qu'une seule fois
-  //	les paramètres de connexions à un serveur MySQL 
+  //	les paramï¿½tres de connexions ï¿½ un serveur MySQL
 
   $host="127.0.0.1";
   $user="root";
-  $pass="";
+  $pass="root";
   $base="TaupeVelos";
   $id_user="0000";
-  
+
 ?>

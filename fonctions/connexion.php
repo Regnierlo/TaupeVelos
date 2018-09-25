@@ -9,7 +9,7 @@ function connexion()
 		extract($_POST);
 		$sel='';
 		$mdp_base='';
-		$requete = mysql_query('select sel, mdp from utilisateur where login="'.$login.'"');
+		$requete = mysql_query('select pass from users where login="'.$login.'"');
 		if (mysql_num_rows($requete)) //Si l'utilisateur existe
 		{
 			$donnees = mysql_fetch_row($requete);

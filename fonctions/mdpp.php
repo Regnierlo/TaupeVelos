@@ -4,7 +4,7 @@
 		include("../Parametres.php");
 		include("../Fonctions.inc.php");
 
-		$mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
+		$mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 		mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");	
 		$result = query($mysqli,'select login,prenom,nom,email,adresse,ville,telephone from users where login = \'admin\'');
 		//creation d'un nouveau mot de pass

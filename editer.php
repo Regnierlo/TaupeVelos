@@ -7,7 +7,7 @@ include 'fonctions/profil.php';
 		  include("Parametres.php");
 		  include("Fonctions.inc.php");
 		  include("Donnees.inc.php");
-		  $mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
+		  $mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 		  mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 				$str = "SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM USERS WHERE LOGIN = '".$_SESSION["login"]."'";
 				$result = query($mysqli,$str) or die("Impossible de se connecter");
@@ -76,7 +76,10 @@ include 'fonctions/profil.php';
 										<tr>
 											<td><p><strong>Code Postal</strong></p></td><td><input name='postalbdd' type=\"text\" placeholder=\"".$codepostal."\"/></td>
 										</tr>
-										<tr>
+                                        <tr>
+                                        <td><p><strong>Mot de pass</strong></p></td><td><input name='passwordbdd' type=\"text\"/></td>
+										</tr>
+																				<tr>
 										<tr>
 											<td><p><strong>Sexe</strong></p></td><td><input type='radio' name='optradio' value='Femme'/>Femme     <input type='radio' name='optradio' checked='' value='Homme'/>Homme</td>
 										</tr>

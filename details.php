@@ -39,7 +39,7 @@ session_start();
 		  <?php 		
 				include("Parametres.php");
 				include("Fonctions.inc.php");
-				$mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
+				$mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 				mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 				$result = query($mysqli,'select * from rubrique');
 			?>
@@ -54,7 +54,7 @@ session_start();
 					while($row = mysqli_fetch_assoc($result)){
 						
 					echo '<article class="one_third">
-						  <figure><img src="'.$row["PHOTO"].'" width="290" height="180" alt="">
+						  <figure><img src="images/'.$row["PHOTO"].'" width="290" height="180" alt="">
 							<figcaption>
 							  <h2><a href="#" onclick="addPanier('.$row["ID_PROD"].')">ACHETER</a> '.$row["LIBELLE"].'</h2>
 							  <p>'.$row["DESCRIPTIF"].'</p>

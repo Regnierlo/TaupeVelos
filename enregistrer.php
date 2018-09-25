@@ -128,19 +128,23 @@ $result["msg"] = "invalide";
 			  $ville = NULL;
 		  }
 		  
-		if(isset($_POST["codepostalbdd"])){
-			  if(empty($_POST["codepostalbdd"])){
+		//if(isset($_POST["codepostalbdd"])){
+			if(empty($_POST["codepostalbdd"])){
 			  $codepostal = NULL;
+			  $return["codepostal"] = "le code postal n'est pas valide";
+			  $ok = false;
 			}else{
 				$codepostal = mysqli_real_escape_string($mysqli,$_POST["codepostalbdd"]);
-				if(sizeof($codepostal)>50){
-				$return["codepostal"] = "le code postal n'est pas valid";
+				if(!(strlen($codepostal)==5)){
+				$return["codepostal"] = "le code postal n'est pas valide" ;
 				$ok = false;
 				}
 			}
-		  }else{
+		  /*}else{
 			  $codepostal = NULL;
-		  }
+			  $return["codepostal"] = "Veuillez renseigner le code postal" ;
+			  $ok = false;
+		  }*/
 		  
 		if(isset($_POST["datebdd"])){
 			 if(empty($_POST["datebdd"])){
@@ -158,8 +162,8 @@ $result["msg"] = "invalide";
 		  }
 		  
 		 if(isset($_POST["telephonebdd"])){
-			  if(!preg_match("/^[0-9]{9,15}$/",$_POST["telephonebdd"],$matches)){
-					  $return["telephoneVal"] = "le telephone n'est pas valid";
+			if(!preg_match("/^0([0-9]{9}$)/",$_POST["telephonebdd"],$matches)){
+					  $return["telephoneVal"] = "le telephone n'est pas valide";
 					  $telephone = NULL;
 			}
 			else{

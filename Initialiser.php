@@ -29,9 +29,9 @@
 					  DATE varchar(10),
 					  SEXE varchar(10),
 					  ADRESSE varchar(500),
-					  CODEP int(20),
+					  CODEP varchar(20),
 					  VILLE varchar(50),
-					  TELEPHONE int(50)					  
+					  TELEPHONE varchar(50)					  
 					) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 				");
 				
@@ -104,7 +104,7 @@ query($mysqli,'CREATE TABLE IF NOT EXISTS `propriete` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;');
 						
   // Insertion
-  query($mysqli,"INSERT INTO USERS VALUES ('admin','admin@admin.com','admin','ADMIN','admin','01/01/1999','Homme',NULL,'57000',NULL,918633099);");
+  query($mysqli,"INSERT INTO USERS VALUES ('admin','admin@admin.com','admin','ADMIN','admin','01/01/1999','Homme',NULL,'57000',NULL,'0918633099');");
   query($mysqli,"INSERT INTO RUBRIQUE (LIBELLE_RUB)VALUES ('Indice')");
   query($mysqli,"INSERT INTO RUBRIQUE (LIBELLE_RUB)VALUES ('Ville')");
   query($mysqli,"INSERT INTO RUBRIQUE (LIBELLE_RUB)VALUES ('Route')");

@@ -76,7 +76,10 @@ include 'fonctions/profil.php';
 										<tr>
 											<td><p><strong>Code Postal</strong></p></td><td><input name='postalbdd' type=\"text\" placeholder=\"".$codepostal."\"/></td>
 										</tr>
-										<tr>
+                                        <tr>
+                                        <td><p><strong>Mot de pass</strong></p></td><td><input name='passwordbdd' type=\"text\"/></td>
+										</tr>
+																				<tr>
 										<tr>
 											<td><p><strong>Sexe</strong></p></td><td><input type='radio' name='optradio' value='Femme'/>Femme     <input type='radio' name='optradio' checked='' value='Homme'/>Homme</td>
 										</tr>

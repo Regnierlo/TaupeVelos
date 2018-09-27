@@ -125,7 +125,7 @@ query($mysqli,'CREATE TABLE IF NOT EXISTS `propriete` (
 
   query($mysqli,'insert into appartient values(1,(select id_rub from rubrique where libelle_rub = \'Ville\'))');
   query($mysqli,'insert into appartient values(2,(select id_rub from rubrique where libelle_rub = \'Route\'))');
-  query($mysqli,'insert into appartient values(1,(select id_propx from propriete where libelle_prop = \'Autre\'))');
+  query($mysqli,'insert into appartient values(1,(select id_prop from propriete where libelle_prop = \'Autre\'))');
   query($mysqli,'insert into appartient values(2,(select id_rub from rubrique where LIBELLE_RUB = \'Autre\'))');
   query($mysqli,'insert into produits (LIBELLE,PRIX,PHOTO,DESCRIPTIF) values (\'VELO RAILWAY LADY 1.5\',\'179\',\'railway-lady-1-5.jpg\',\'Le railway lady 1.5 est un incontournable des vélos urbains. Simple, robuste et versatile, le railway sera votre compagnon de tous les jours pour affronter la ville.\')');
   query($mysqli,'insert into produits (LIBELLE,PRIX,PHOTO,DESCRIPTIF) values (\'VELO SPEGO 105 1.4 GO SPORT\',\'400\',\'spego-105-1-4.jpg\',\'De la route, tout simplement. Le Spego 105 1.4 rend la route accessible à tous. Simple, léger, proposant une position confortable, ce vélo sera parfait pour garder la forme ou même pour aller au travail. Le Spego offre une véritable polyvalence sur route.\')');

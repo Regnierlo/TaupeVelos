@@ -3,6 +3,8 @@ session_start();
 include("Parametres.php");
 include("Fonctions.inc.php");
 include("Donnees.inc.php");
+//permet de verifier la date
+include("fonctions/Outils.php");
 
 $mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
@@ -15,7 +17,7 @@ $result["msg"] = "invalide";
 		  if((isset($_POST["loginbdd"])) && (isset($_POST["passwordbdd"]))){			  
 			  if(empty($_POST["loginbdd"]) || empty($_POST["passwordbdd"])){
 				$return["pass"] = "le mot de pass est très court";
-			    $return["loginVal"] = "le login n'est pas valid";
+			    $return["loginVal"] = "le login n'est pas valide";
 				$ok = false;
 			  }
 			  else{
@@ -23,7 +25,7 @@ $result["msg"] = "invalide";
 				 $login = mysqli_real_escape_string($mysqli,$_POST["loginbdd"]);
 				 $matches[] = NULL;
 				 if(!preg_match("/^[a-zA-Z'\-\_0-9 ]+$/",$_POST["loginbdd"])){
-							  $return["loginVal"] = "le login n'est pas valid";
+							  $return["loginVal"] = "le login n'est pas valide";
 							  $login = NULL;
 							
 					  }
@@ -50,7 +52,7 @@ $result["msg"] = "invalide";
 			
 		  	if(isset($_POST["emailbdd"])){
 				if(!filter_var($_POST["emailbdd"], FILTER_VALIDATE_EMAIL)){
-					  $return["emailVal"] = "l'email n'est pas valid";
+					  $return["emailVal"] = "l'email n'est pas valide";
 					  $email = NULL;
 				}
 				else{
@@ -62,13 +64,13 @@ $result["msg"] = "invalide";
 		  
 		 if(isset($_POST["nombdd"])){
 			  if(empty($_POST["nombdd"])){
-				  $return["Nom"] = "le Nom n'est pas valid";
+				  $return["Nom"] = "le Nom n'est pas valide";
 				  $nom = NULL;
 			  }
 			  else{
 				  $nom = mysqli_real_escape_string($mysqli,$_POST["nombdd"]);
 				  if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["nombdd"])){
-					  $return["Nom"] = "le Nom n'est pas valid";
+					  $return["Nom"] = "le Nom n'est pas valide";
 					  $nom = NULL;
 				  }else if(sizeof($nom)>50){
 					  $return["Nom"] = "le Nom est trop long";
@@ -86,7 +88,7 @@ $result["msg"] = "invalide";
 			  else{
 				  $prenom = mysqli_real_escape_string($mysqli,$_POST["prenombdd"]);
 				  if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["prenombdd"])){
-					  $return["Prenom"] = "le Prénom n'est pas valid";
+					  $return["Prenom"] = "le Prénom n'est pas valide";
 					  $prenom = NULL;
 				  }else if(sizeof($prenom)>50){
 					  $return["Prenom"] = "le Prénom est trop long";
@@ -135,7 +137,7 @@ $result["msg"] = "invalide";
 			  $ok = false;
 			}else{
 				$codepostal = mysqli_real_escape_string($mysqli,$_POST["codepostalbdd"]);
-				if(!(strlen($codepostal)==5)){
+				if(strlen($codepostal)!=5){
 				$return["codepostal"] = "le code postal n'est pas valide" ;
 				$ok = false;
 				}
@@ -145,26 +147,33 @@ $result["msg"] = "invalide";
 			  $return["codepostal"] = "Veuillez renseigner le code postal" ;
 			  $ok = false;
 		  }*/
-		  
+		
 		if(isset($_POST["datebdd"])){
 			 if(empty($_POST["datebdd"])){
 			  $date = NULL;
 			}else{
 				$date = mysqli_real_escape_string($mysqli,$_POST["datebdd"]);
-				if(sizeof($date)>50){
-				$return["date"] = "le code postal n'est pas valid";
-				$ok = false;
+				$datebd = explode('-', $date);
+				$temp = $datebd[0];
+				$datebd[0] = $datebd[2];
+				$datebd[2] = $temp;
+				if((strlen($date) != 10) || (!checkdate($datebd[1], $datebd[2], $datedd[0])) || (!dateIsCorrect($datebd)))
+				{
+					$return["date"] = "la date n'est pas valide";
+					$ok = false;
 				}
 			}
-		  }
-		  else{
-			  $date = NULL;
-		  }
+		}
+		else{
+			$date = NULL;
+		}
 		  
 		 if(isset($_POST["telephonebdd"])){
-			if(!preg_match("/^0([0-9]{9}$)/",$_POST["telephonebdd"],$matches)){
+			$telephoneVal = mysqli_real_escape_string($mysqli,$_POST["telephoneVal"]);
+			if(!preg_match("/^0([0-9]{9}$)/",$_POST["telephonebdd"],$matches) && (strlen($telephoneVal)!=10)){
 					  $return["telephoneVal"] = "le telephone n'est pas valide";
 					  $telephone = NULL;
+					  $ok = false;
 			}
 			else{
 				$telephone = $_POST["telephonebdd"];

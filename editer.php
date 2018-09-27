@@ -77,7 +77,7 @@ include 'fonctions/profil.php';
 											<td><p><strong>Code Postal</strong></p></td><td><input name='postalbdd' type=\"text\" placeholder=\"".$codepostal."\"/></td>
 										</tr>
                                         <tr>
-                                        <td><p><strong>Mot de pass</strong></p></td><td><input name='passwordbdd' type=\"text\"/></td>
+                                        <td><p><strong>Mot de passe</strong></p></td><td><input name='passwordbdd' type=\"text\"/></td>
 										</tr>
 																				<tr>
 										<tr>

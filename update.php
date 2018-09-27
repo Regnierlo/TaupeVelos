@@ -4,6 +4,7 @@
 	include("Parametres.php");
 	include("Fonctions.inc.php");
 	include("Donnees.inc.php");
+	include("fonctions/Outils.php")
 	$mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 	mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 
@@ -118,15 +119,27 @@
 	}
 	else{
 		$len = strlen(trim(mysqli_real_escape_string($mysqli,$_POST["datebdd"])));
-		if(!preg_match("/^[0-9\/ ]*$/",$_POST["datebdd"])){
+		//if(!preg_match("/^[0-9\/ ]*$/",$_POST["datebdd"])){
+		if(!preg_match("([0-9]{1,2}['/'][0-9]{1,2}['/'][0-9]{4})",$_POST["datebdd"])){
 			$date = $row["DATE"];
 		}
-		else if($len>20){
+		else if($len>10){
 			$date = $row["DATE"];
 		}
 		else{
 			$data = explode("/",$_POST["datebdd"]);
-			if(checkdate((int)$data[1],(int)$data[0],(int)$data[2])){
+
+			//Normalisation du jour en jj
+			if (strlen($data[0]) == 1) {
+				$data[0] = "0".$data[0];
+			}
+
+			//Normalisation du mois en mm
+			if (strlen($data[1] == 1)) {
+				$data[1] = "0".$data[1];
+			}
+
+			if (dateIsCorrect($data)) {
 				$date = trim(mysqli_real_escape_string($mysqli,$_POST["datebdd"]));
 			}else{
 				$date = $row["DATE"];

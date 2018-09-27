@@ -10,19 +10,19 @@
             $dateIsCorrect = true; //On part du principe que la date est vraie
 
             //Si la date courante est inférieur à la date rentrée
-            if ($currentYear < $dateArray[2]) {
+            if (intval($currentYear) < intval($dateArray[2])) {
                 $dateIsCorrect = false; //Alors c'est faux
             }
             //Sinon si c'est égale
-            else if ($currentYear == $dateArray[2]) {
+            else if (intval($currentYear) == intval($dateArray[2])) {
                 //Si le mois courant est inférieur à celui rentré
-                if ($currentMonth < $dateArray[1]) {
+                if (intval($currentMonth) < intval($dateArray[1])) {
                     $dateIsCorrect = false; //Alors c'est faux
                 }
                 //Sinon si le mois courant est égale à celui rentré
-                else if ($currentMonth == $dateArray[1]) {
+                else if (intval($currentMonth) == intval($dateArray[1])) {
                     //Si le jour courant est inférieur ou égale au jour rentré
-                    if ($currentDay <= $dateArray[0]) {
+                    if (intval($currentDay) <= intval($dateArray[0])) {
                         $dateIsCorrect = false;//Alors c'est faux
                     }
                 }

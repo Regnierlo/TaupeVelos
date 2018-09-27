@@ -45,7 +45,7 @@ include 'fonctions/profil.php';
 	<?php
 								echo '<form action="update.php" method="post">';
 									if(isset($row["LOGIN"])){
-										echo "					
+										echo "
 										<table wnameth='30%'>
 										<tr>
 											<th><hr></th>
@@ -56,7 +56,7 @@ include 'fonctions/profil.php';
 										<tr>
 											<td><p><strong>Nom</strong></p></td><td><input name='nombdd' type=\"text\" placeholder=\"".$nom."\"/></td>
 										</tr>
-										
+
 										<tr>
 											<td><p><strong>Prénom</strong></p></td><td><input name='prenombdd' type=\"text\" placeholder=\"".$prenom."\"/></td>
 										</tr>
@@ -66,7 +66,7 @@ include 'fonctions/profil.php';
 										<tr>
 											<td><p><strong>Telephone</strong></p></td><td><input name='telephonebdd' type=\"text\" placeholder=\"".$telephone."\"/></td>
 										</tr>
-										
+
 										<tr>
 											<td><p><strong>Adresse</strong></p></td><td><textarea name='adressebdd' rows=\"4\" placeholder=\"".$adresse."\"></textarea></td>
 										</tr>

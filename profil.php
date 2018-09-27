@@ -43,9 +43,9 @@ include 'fonctions/profil.php';
     <!-- main content -->
     <div id="homepage" style="min-height:400px">
 	<?php
-					
+
 									if(isset($row["LOGIN"])){
-										echo "					
+										echo "
 										<table width='30%'>
 										<tr>
 											<th><hr></th>
@@ -56,7 +56,7 @@ include 'fonctions/profil.php';
 										<tr>
 											<td><p><strong>Nom</strong></p></td><td>".$nom."</td>
 										</tr>
-										
+
 										<tr>
 											<td><p><strong>Prénom</strong></p></td><td>".$prenom."</td>
 										</tr>
@@ -64,9 +64,9 @@ include 'fonctions/profil.php';
 											<td><p><strong>Date de Naissance</strong></p></td><td>".$date."</td>
 										</tr>
 										<tr>
-											<td><p><strong>Telephone</strong></p></td><td>".$telephone."</td>
+											<td><p><strong>Telephone</strong></p></td><td>0".$telephone."</td>
 										</tr>
-										
+
 										<tr>
 											<td><p><strong>Adresse</strong></p></td><td>".$adresse."</td>
 										</tr>

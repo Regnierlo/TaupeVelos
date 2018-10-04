@@ -5,7 +5,7 @@
 	include("Fonctions.inc.php");
 	include("Donnees.inc.php");
 	include("fonctions/Outils.php");
-
+	
 	$mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 	mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 
@@ -41,7 +41,7 @@
 		$nom = $row["NOM"];
 	}
 	else{
-		if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["nombdd"])){
+		if(!preg_match("/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'\- ]+$/",$_POST["nombdd"])){
 			$prenom = $row["NOM"];
 		}
 		else if(trim(mysqli_real_escape_string($mysqli,$_POST["nombdd"]))>50){
@@ -57,7 +57,7 @@
 		$prenom = $row["PRENOM"];
 	}
 	else{
-		if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["prenombdd"])){
+		if(!preg_match("/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'\- ]+$/",$_POST["prenombdd"])){
 			$prenom = $row["PRENOM"];
 		}
 		else if(trim(mysqli_real_escape_string($mysqli,$_POST["prenombdd"]))>50){
@@ -140,8 +140,7 @@
 				$data[1] = "0".$data[1];
 			}
 
-
-			if (checkdate($date[1], $date[0], $date[2]) || dateIsCorrect($data)) {
+			if (dateIsCorrect($data)) {
 				$date = trim(mysqli_real_escape_string($mysqli,$_POST["datebdd"]));
 			}else{
 				$date = $row["DATE"];

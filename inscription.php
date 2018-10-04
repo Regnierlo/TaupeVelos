@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php
+<?php 
 	session_start();
 ?>
 <html lang="fr" dir="ltr">
@@ -41,7 +41,7 @@
 							<input type='text' placeholder='Prénom' maxlength='100' name='prenombdd' />
 						</div>
 						<div>
-							<input type='date' name='datebdd' placeholder='Date de Naissance' required pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}" title="Entrer une date sous le format jj/mm/aaaa" id='datePicker'/>
+							<input type='date' name='datebdd' placeholder='Date de Naissance' id='datePicker'/>
 							<span class='input-group-addon add-on'><span class='glyphicon glyphicon-calendar'></span></span>
 						</div>
 						<div>
@@ -76,7 +76,7 @@
 							unset($_SESSION["inscription"]);
 						?>
 						</div>
-					</div>
+					</div>					
 				</div>
 				</form>
 			</div>

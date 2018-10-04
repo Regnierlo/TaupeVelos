@@ -14,7 +14,7 @@ $ok = true;
 $result["msg"] = "invalide";
 
 
-		  if((isset($_POST["loginbdd"])) && (isset($_POST["passwordbdd"]))){
+		  if((isset($_POST["loginbdd"])) && (isset($_POST["passwordbdd"]))){			  
 			  if(empty($_POST["loginbdd"]) || empty($_POST["passwordbdd"])){
 				$return["pass"] = "le mot de passe est très court";
 			    $return["loginVal"] = "le login n'est pas valide";
@@ -27,29 +27,29 @@ $result["msg"] = "invalide";
 				 if(!preg_match("/^[a-zA-Z'\-\_0-9 ]+$/",$_POST["loginbdd"])){
 							  $return["loginVal"] = "le login n'est pas valide";
 							  $login = NULL;
-
+							
 					  }
-
-
+					  
+				  
 				  if(sizeof($login)>100){
 					  $return["loginLong"] = "le login est trop long";
 					  $ok = false;
 				  }
-
+				  
 				  if(sizeof($pass)>100){
 					  $return["passLong"] = "le mot de passe est trop long";
 					  $ok = false;
 				  }
-
+				  
 			  }
-
+			  
 		  }
 		  else{
 			   $return["loginVal"] = "le login n'est pas valide";;
 			   $return["passVal"] = "le mot de passe n'est valide";
 			   $ok = false;
 		  }
-
+			
 		  	if(isset($_POST["emailbdd"])){
 				if(!filter_var($_POST["emailbdd"], FILTER_VALIDATE_EMAIL)){
 					  $return["emailVal"] = "l'email n'est pas valide";
@@ -61,7 +61,7 @@ $result["msg"] = "invalide";
 			}else{
 				$email = NULL;
 			}
-
+		  
 		 if(isset($_POST["nombdd"])){
 			  if(empty($_POST["nombdd"])){
 				  $return["Nom"] = "le Nom n'est pas valide";
@@ -69,37 +69,37 @@ $result["msg"] = "invalide";
 			  }
 			  else{
 				  $nom = mysqli_real_escape_string($mysqli,$_POST["nombdd"]);
-				  if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["nombdd"])){
+				  if(!preg_match("/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'\- ]+$/",$_POST["nombdd"])){
 					  $return["Nom"] = "le Nom n'est pas valide";
 					  $nom = NULL;
 				  }else if(sizeof($nom)>50){
 					  $return["Nom"] = "le Nom est trop long";
 					   $ok = false;
 				  }
-			  }
+			  } 
 		  }else{
 			  $nom = NULL;
 		  }
-
+		  
 		  if(isset($_POST["prenombdd"])){
 			  if(empty($_POST["prenombdd"])){
 				  $prenom = NULL;
 			  }
 			  else{
 				  $prenom = mysqli_real_escape_string($mysqli,$_POST["prenombdd"]);
-				  if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["prenombdd"])){
+				  if(!preg_match("/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'\- ]+$/",$_POST["prenombdd"])){
 					  $return["Prenom"] = "le Prénom n'est pas valide";
 					  $prenom = NULL;
 				  }else if(sizeof($prenom)>50){
 					  $return["Prenom"] = "le Prénom est trop long";
 					   $ok = false;
 				  }
-			  }
+			  } 
 		  }
 		  else{
 			  $prenom = NULL;
 		  }
-
+		  
 		  if(isset($_POST["adressebdd"])){
 			  if(empty($_POST["adressebdd"])){
 			  $adresse = NULL;
@@ -113,8 +113,8 @@ $result["msg"] = "invalide";
 		  }else{
 			  $adresse = NULL;
 		  }
-
-
+		
+		
 		if(isset($_POST["villebdd"])){
 			  if(empty($_POST["villebdd"])){
 			  $ville = NULL;
@@ -129,7 +129,7 @@ $result["msg"] = "invalide";
 		  else{
 			  $ville = NULL;
 		  }
-
+		  
 		//if(isset($_POST["codepostalbdd"])){
 			if(empty($_POST["codepostalbdd"])){
 			  $codepostal = NULL;
@@ -147,7 +147,7 @@ $result["msg"] = "invalide";
 			  $return["codepostal"] = "Veuillez renseigner le code postal" ;
 			  $ok = false;
 		  }*/
-
+		
 		if(isset($_POST["datebdd"])){
 			 if(empty($_POST["datebdd"])){
 			  $date = NULL;
@@ -157,7 +157,7 @@ $result["msg"] = "invalide";
 				$temp = $datebd[0];
 				$datebd[0] = $datebd[2];
 				$datebd[2] = $temp;
-				if((!dateIsCorrect($datebd)))
+				if((strlen($date) != 10) || (!checkdate($datebd[1], $datebd[0], $datebd[2])) || (!dateIsCorrect($datebd)))
 				{
 					$return["date"] = "la date n'est pas valide";
 					$ok = false;
@@ -167,7 +167,7 @@ $result["msg"] = "invalide";
 		else{
 			$date = NULL;
 		}
-
+		  
 		 if(isset($_POST["telephonebdd"])){
 			$telephoneVal = mysqli_real_escape_string($mysqli,$_POST["telephoneVal"]);
 			if(!preg_match("/^0([0-9]{9}$)/",$_POST["telephonebdd"],$matches) && (strlen($telephoneVal)!=10)){
@@ -181,26 +181,26 @@ $result["msg"] = "invalide";
 		  }else{
 			  $telephone = NULL;
 		  }
-
-
-
+		  	 
+		  
+		  
 		  if(isset($_POST["optradio"])){
 			  $sexe = $_POST["optradio"];
 		  }else{
 			  $sexe = NULL;
 		  }
-		//-------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------------------------  
 		 if(isset($_POST["datebdd"]) && preg_match("/^[0-9\-\/ ]+$/",$_POST["datebdd"])){
 			  $date = $_POST["datebdd"];
-		 }else
+		 }else 
 			 if(isset($_POST["datebdd"])){
 					$data = explode("/",$_POST["datebdd"]);
 					if(isset($data[1]) && isset($data[0]) && isset($data[2])){
 							if(checkdate((int)$data[1],(int)$data[0],(int)$data[2])){
-							  $date = trim(mysqli_real_escape_string($mysqli,$_POST["datebdd"]));
+							  $date = trim(mysqli_real_escape_string($mysqli,$_POST["datebdd"])); 
 						}
 					}
-
+					
 				$date = NULL;
 		}
 		  if(isset($login)){
@@ -210,8 +210,8 @@ $result["msg"] = "invalide";
 				  $ok = false;
 				  $return["dejaEmail"] = "l'email saisi est déjà enregistré";
 			  }
-
-
+			  
+			  
 			  $str = "SELECT LOGIN FROM USERS WHERE LOGIN = '".$login."'";
 			  $result = query($mysqli,$str) or die("Impossible de creer une compte dans ce moment<br>");
 			  if(mysqli_num_rows($result)>0){
@@ -236,10 +236,10 @@ $result["msg"] = "invalide";
 				$_SESSION["VILLE"] = $ville;
 				$_SESSION["TELEPHONE"] = $telephone;
 				unset($return);
-				mysqli_close($mysqli);
+				mysqli_close($mysqli);	
 				header('location: profil.php');
 	}
-
+	
 mysqli_close($mysqli);
 $_SESSION["inscription"] = $return;
 header('location: inscription.php');

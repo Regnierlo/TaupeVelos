@@ -61,7 +61,7 @@ include 'fonctions/profil.php';
 											<td><p><strong>Prénom</strong></p></td><td><input name='prenombdd' type=\"text\" placeholder=\"".$prenom."\"/></td>
 										</tr>
 										<tr>
-											<td><p><strong>Date de Naissance</strong></p></td><td><input name='datebdd' type=\"date\" placeholder=\"".$date."\" required pattern=\"(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}\" title=\"Entrer une date sous le format jj/mm/aaaa\"/></td>
+											<td><p><strong>Date de Naissance</strong></p></td><td><input name='datebdd' type=\"date\" placeholder=\"".$date."\"/></td>
 										</tr>
 										<tr>
 											<td><p><strong>Telephone</strong></p></td><td><input name='telephonebdd' type=\"text\" placeholder=\"".$telephone."\"/></td>

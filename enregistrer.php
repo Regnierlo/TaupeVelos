@@ -16,7 +16,7 @@ $result["msg"] = "invalide";
 
 		  if((isset($_POST["loginbdd"])) && (isset($_POST["passwordbdd"]))){			  
 			  if(empty($_POST["loginbdd"]) || empty($_POST["passwordbdd"])){
-				$return["pass"] = "le mot de pass est très court";
+				$return["pass"] = "le mot de passe est très court";
 			    $return["loginVal"] = "le login n'est pas valide";
 				$ok = false;
 			  }
@@ -32,12 +32,12 @@ $result["msg"] = "invalide";
 					  
 				  
 				  if(sizeof($login)>100){
-					  $return["loginLong"] = "l'login est trop long";
+					  $return["loginLong"] = "le login est trop long";
 					  $ok = false;
 				  }
 				  
 				  if(sizeof($pass)>100){
-					  $return["passLong"] = "le mot de pass est trop long";
+					  $return["passLong"] = "le mot de passe est trop long";
 					  $ok = false;
 				  }
 				  
@@ -45,8 +45,8 @@ $result["msg"] = "invalide";
 			  
 		  }
 		  else{
-			   $return["loginVal"] = "l'login n'est pas valid";;
-			   $return["passVal"] = "le mot de pass n'est valid";
+			   $return["loginVal"] = "le login n'est pas valide";;
+			   $return["passVal"] = "le mot de passe n'est valide";
 			   $ok = false;
 		  }
 			
@@ -157,7 +157,7 @@ $result["msg"] = "invalide";
 				$temp = $datebd[0];
 				$datebd[0] = $datebd[2];
 				$datebd[2] = $temp;
-				if((strlen($date) != 10) || (!checkdate($datebd[1], $datebd[2], $datedd[0])) || (!dateIsCorrect($datebd)))
+				if((strlen($date) != 10) || (!checkdate($datebd[1], $datebd[0], $datebd[2])) || (!dateIsCorrect($datebd)))
 				{
 					$return["date"] = "la date n'est pas valide";
 					$ok = false;

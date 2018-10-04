@@ -64,7 +64,7 @@ include 'fonctions/profil.php';
 											<td><p><strong>Date de Naissance</strong></p></td><td>".$date."</td>
 										</tr>
 										<tr>
-											<td><p><strong>Telephone</strong></p></td><td>0".$telephone."</td>
+											<td><p><strong>Telephone</strong></p></td><td>".$telephone."</td>
 										</tr>
 
 										<tr>

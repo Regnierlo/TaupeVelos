@@ -5,7 +5,7 @@
 	include("Fonctions.inc.php");
 	include("Donnees.inc.php");
 	include("fonctions/Outils.php");
-	
+
 	$mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 	mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 
@@ -140,7 +140,8 @@
 				$data[1] = "0".$data[1];
 			}
 
-			if (dateIsCorrect($data)) {
+
+			if (checkdate($date[1], $date[0], $date[2]) || dateIsCorrect($data)) {
 				$date = trim(mysqli_real_escape_string($mysqli,$_POST["datebdd"]));
 			}else{
 				$date = $row["DATE"];

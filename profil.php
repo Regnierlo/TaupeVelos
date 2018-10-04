@@ -7,7 +7,7 @@ include 'fonctions/profil.php';
 		  include("Parametres.php");
 		  include("Fonctions.inc.php");
 		  include("Donnees.inc.php");
-		  $mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
+		  $mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 		  mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 				$str = "SELECT LOGIN,EMAIL,PASS,NOM,PRENOM,DATE,SEXE,ADRESSE,CODEP,VILLE,TELEPHONE FROM USERS WHERE LOGIN = '".$_SESSION["login"]."'";
 				$result = query($mysqli,$str) or die("Impossible de se connecter");
@@ -43,9 +43,9 @@ include 'fonctions/profil.php';
     <!-- main content -->
     <div id="homepage" style="min-height:400px">
 	<?php
-					
+
 									if(isset($row["LOGIN"])){
-										echo "					
+										echo "
 										<table width='30%'>
 										<tr>
 											<th><hr></th>
@@ -56,7 +56,7 @@ include 'fonctions/profil.php';
 										<tr>
 											<td><p><strong>Nom</strong></p></td><td>".$nom."</td>
 										</tr>
-										
+
 										<tr>
 											<td><p><strong>Prénom</strong></p></td><td>".$prenom."</td>
 										</tr>
@@ -66,7 +66,7 @@ include 'fonctions/profil.php';
 										<tr>
 											<td><p><strong>Telephone</strong></p></td><td>".$telephone."</td>
 										</tr>
-										
+
 										<tr>
 											<td><p><strong>Adresse</strong></p></td><td>".$adresse."</td>
 										</tr>

@@ -4,10 +4,9 @@ session_start();
 								include("../Fonctions.inc.php");
 								include("../Donnees.inc.php");
 									  
-								 $mysqli=mysqli_connect($host,$user,$pass) or die("Problème de création de la base :".mysqli_error());
+								 $mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 								 mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
-										
-										$return["msg"] = "L'utilisateur n'a été pas trouvé";
+										//$return["msg"] = "L'utilisateur n'a été pas trouvé";
 										
 										if(isset($_POST["login"]) && isset($_POST["password"])){
 										  $login = trim(mysqli_real_escape_string($mysqli,$_POST["login"]));
@@ -31,8 +30,16 @@ session_start();
 														echo $return["msg"];
 														exit();
 													}
+													else
+													{
+														$return["msg"] = "Utilisateur pas connecté";
+													}
 													
 											  }
+										}
+										else
+										{
+											$return["msg"] = "FONCTIONNE PAS";
 										}
 								mysqli_close($mysqli);
 								echo $return["msg"];		

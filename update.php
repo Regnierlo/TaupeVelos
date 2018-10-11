@@ -121,13 +121,8 @@
 	}
 	else{
 		$len = strlen(trim(mysqli_real_escape_string($mysqli,$_POST["datebdd"])));
-		/*if(!preg_match("/^[0-9\/ ]*$/",$_POST["datebdd"])){
-		//if(!preg_match("([0-9]{4}['/'][0-9]{2}['/'][0-9]{2})",$_POST["datebdd"])){
-			$date = $row["DATE"];
-			var_dump($_POST["datebdd"]);
-			exit();
-		}
-		else */if($len>10){
+
+		if($len>10){
 			$date = $row["DATE"];
 		}
 		else{
@@ -143,25 +138,6 @@
 			else {
 				$date = $row["DATE"];
 			}
-
-
-			/*$data = explode("/",$_POST["datebdd"]);
-
-			//Normalisation du jour en jj
-			if (strlen($data[0]) == 1) {
-				$data[0] = "0".$data[0];
-			}
-
-			//Normalisation du mois en mm
-			if (strlen($data[1] == 1)) {
-				$data[1] = "0".$data[1];
-			}
-
-			if (dateIsCorrect($data)) {
-				$date = trim(mysqli_real_escape_string($mysqli,$_POST["datebdd"]));
-			}else{
-				$date = $row["DATE"];
-			}*/
 		}
 	}
 

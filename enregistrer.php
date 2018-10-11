@@ -69,7 +69,7 @@ $result["msg"] = "invalide";
 			  }
 			  else{
 				  $nom = mysqli_real_escape_string($mysqli,$_POST["nombdd"]);
-				  if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["nombdd"])){
+				  if(!preg_match("/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'\- ]+$/",$_POST["nombdd"])){
 					  $return["Nom"] = "le Nom n'est pas valide";
 					  $nom = NULL;
 				  }else if(sizeof($nom)>50){
@@ -87,7 +87,7 @@ $result["msg"] = "invalide";
 			  }
 			  else{
 				  $prenom = mysqli_real_escape_string($mysqli,$_POST["prenombdd"]);
-				  if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["prenombdd"])){
+				  if(!preg_match("/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'\- ]+$/",$_POST["prenombdd"])){
 					  $return["Prenom"] = "le Prénom n'est pas valide";
 					  $prenom = NULL;
 				  }else if(sizeof($prenom)>50){

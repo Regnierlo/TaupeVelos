@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
 session_start();
 include 'fonctions/acheter.php';
 ?>
@@ -11,17 +11,17 @@ include 'fonctions/acheter.php';
 <script src="js/jquery.min.js"></script>
 <script>
 
-			function removePanier(e,i){
+			function removePanier(e){
 				$.ajax({
 					type: 'POST',
 					url: 'fonctions/remove.php',
-					data: {item : e, pos : i},
+					data: {item : e},
 					success: function(data){
 								alert(data);
 								location.reload();
 					},
 				});
-			};	
+			};
 </script>
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>

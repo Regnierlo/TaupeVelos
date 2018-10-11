@@ -13,24 +13,24 @@
 
 						$mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 						mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
-						
+
 						$arr = json_decode($_COOKIE["panier"]);
 						echo '<table>';
 						$item = 0;
-						echo "<tr><td width='50px'>ID</td><td width='80px'>Libelle</td><td width='80px'>Prix</td></tr>"; 
+						echo "<tr><td width='50px'>ID</td><td width='80px'>Libelle</td><td width='80px'>Prix</td></tr>";
 						echo "<tr><td colspan='3'><hr></td></tr>";
 						foreach($arr as $item){
 								$str = 'select * from produits where id_prod = '.$item;
 								$result = query($mysqli,$str);
 								$row = mysqli_fetch_assoc($result);
-											
+
 												echo "<tr>";
 												echo "<td id='item'>".$row["ID_PROD"]."</td><td> ".$row["LIBELLE"]."</td><td> ".$row["PRIX"]."</td>";
-												echo '<td><button onclick="removePanier('.$row["ID_PROD"].','.$item.')">effacer</button></td>';
+												echo '<td><button onclick="removePanier('.$row["ID_PROD"].')">effacer</button></td>';
 												echo "</tr>";
 												echo "<tr><td colspan='3'><hr></td></tr>";
 												$item++;
-									
+
 						}
 						echo '</table>';
 						mysqli_close($mysqli);

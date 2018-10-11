@@ -5,7 +5,7 @@
 	include("Fonctions.inc.php");
 	include("Donnees.inc.php");
 	include("fonctions/Outils.php");
-	
+
 	$mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 	mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
 
@@ -41,7 +41,7 @@
 		$nom = $row["NOM"];
 	}
 	else{
-		if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["nombdd"])){
+		if(!preg_match("/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'\- ]+$/",$_POST["nombdd"])){
 			$prenom = $row["NOM"];
 		}
 		else if(trim(mysqli_real_escape_string($mysqli,$_POST["nombdd"]))>50){
@@ -57,7 +57,7 @@
 		$prenom = $row["PRENOM"];
 	}
 	else{
-		if(!preg_match("/^[a-zA-Z'\- ]+$/",$_POST["prenombdd"])){
+		if(!preg_match("/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ'\- ]+$/",$_POST["prenombdd"])){
 			$prenom = $row["PRENOM"];
 		}
 		else if(trim(mysqli_real_escape_string($mysqli,$_POST["prenombdd"]))>50){
@@ -116,19 +116,36 @@
 	}
 
 	if((isset($_POST["datebdd"]) && empty($_POST["datebdd"])) || !(isset($_POST["datebdd"]))){
+
 		$date = $row["DATE"];
 	}
 	else{
 		$len = strlen(trim(mysqli_real_escape_string($mysqli,$_POST["datebdd"])));
-		//if(!preg_match("/^[0-9\/ ]*$/",$_POST["datebdd"])){
-		if(!preg_match("([0-9]{1,2}['/'][0-9]{1,2}['/'][0-9]{4})",$_POST["datebdd"])){
+		/*if(!preg_match("/^[0-9\/ ]*$/",$_POST["datebdd"])){
+		//if(!preg_match("([0-9]{4}['/'][0-9]{2}['/'][0-9]{2})",$_POST["datebdd"])){
 			$date = $row["DATE"];
+			var_dump($_POST["datebdd"]);
+			exit();
 		}
-		else if($len>10){
+		else */if($len>10){
 			$date = $row["DATE"];
 		}
 		else{
-			$data = explode("/",$_POST["datebdd"]);
+			$date = mysqli_real_escape_string($mysqli,$_POST["datebdd"]);
+			$datebd = explode('-', $date);
+			$temp = $datebd[0];
+			$datebd[0] = $datebd[2];
+			$datebd[2] = $temp;
+			if(!((strlen($date) != 10) || (!checkdate($datebd[1], $datebd[0], $datebd[2])) || (!dateIsCorrect($datebd))))
+			{
+				$date = trim(mysqli_real_escape_string($mysqli,$_POST["datebdd"]));
+			}
+			else {
+				$date = $row["DATE"];
+			}
+
+
+			/*$data = explode("/",$_POST["datebdd"]);
 
 			//Normalisation du jour en jj
 			if (strlen($data[0]) == 1) {
@@ -144,7 +161,7 @@
 				$date = trim(mysqli_real_escape_string($mysqli,$_POST["datebdd"]));
 			}else{
 				$date = $row["DATE"];
-			}
+			}*/
 		}
 	}
 

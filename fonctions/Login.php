@@ -3,11 +3,11 @@ session_start();
 								include("../Parametres.php");
 								include("../Fonctions.inc.php");
 								include("../Donnees.inc.php");
-									  
+
 								 $mysqli=mysqli_connect($host.":".$port,$user,$pass) or die("Problème de création de la base :".mysqli_error());
 								 mysqli_select_db($mysqli,$base) or die("Impossible de sélectionner la base : $base");
-										//$return["msg"] = "L'utilisateur n'a été pas trouvé";
-										
+										//$return["msg"] = "L'utilisateur n'a été pas trouvé"; 
+
 										//Condition sur les contenus des champs pass et login pas utile car on utilise une requète bdd pour tester si les valeurs corespondent à un utilisateur inscrit
 
 										//if(isset($_POST["login"]) && isset($_POST["password"])){
@@ -43,7 +43,7 @@ session_start();
 													{
 														$return["msg"] = "Login ou mot de passe incorrect";
 													}
-													
+
 											}
 											else
 											{
@@ -51,12 +51,12 @@ session_start();
 											}
 
 										// Test sur le contenu des champs login et mdp inutile car on test directement on comparant à la bdd
-										//} 
+										//}
 										// else
 										// {
 										// 	$return["msg"] = "Veuillez vous authentifier avec votre mot de passe et votre identifiant";
 										// }
-											
+
 								mysqli_close($mysqli);
-								echo $return["msg"];		
+								echo $return["msg"];
 ?>

@@ -26,7 +26,7 @@
                     else if (intval($currentMonth) == intval($dateArray[1])) {
                         //Si le jour courant est inférieur ou égale au jour rentré
                         if (intval($currentDay) <= intval($dateArray[0])) {
-                            $dateIsCorrect = false;//Alors c'est faux
+                            $dateIsCorrect = false;//Alors c'est faux 
                         }
                     }
                 }

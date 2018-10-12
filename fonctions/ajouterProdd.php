@@ -7,7 +7,7 @@
 
 	}else{
 		$file_result = $_FILES['file']['name'];
-		move_uploaded_file($_FILES['file']['tmp_name'],'../'.$file_result);
+		move_uploaded_file($_FILES['file']['tmp_name'],'../images/'.$file_result);
 
 		include("../Parametres.php");
 		include("../Fonctions.inc.php");
@@ -19,9 +19,10 @@
 		if(isset($_POST["libelle"]) && isset($_POST["prix"]) && isset($_POST["descriptif"])){
 
 			$ok = true;
-			if(!preg_match('/^([A-Za-z]{0,80}$)/', $_POST["libelle"])){
-				$ok = false;
-			}
+			//Regex pour le libelle des l'ajout d'un produit en admin pas utilise car tout est utilisé
+			//if(!preg_match('/^([A-Za-z]{0,80}$)/', $_POST["libelle"])){
+			//	$ok = false;
+			//}
 
 			if(!preg_match('/^([0-9]+$)/', $_POST["prix"])){
 					$ok = false;
@@ -38,7 +39,7 @@
 					query($mysqli,'insert into appartient (id_prod,id_rub) values ((select max(id_prod) from produits),(select id_rub from rubrique where libelle_rub = \''.$rubrique.'\'))');
 					query($mysqli,'insert into appartient2 (id_prod,id_prop,valeur_prop) values ((select max(id_prod) from produits),(select id_prop from propriete where libelle_prop = \''.$prop.'\'),(select libelle_prop from propriete where libelle_prop = \''.$prop.'\'))');
 
-					echo "Engretrement reussi";
+					echo "Enregistrement reussi";
 				}
 				else
 				{

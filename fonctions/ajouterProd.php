@@ -14,25 +14,25 @@
 		echo "<tr><td wnameth='180px'>Libelle</td><td><input type='text' name='libelle'></input></td></tr>";
 		echo "<tr><td>Prix</td><td><input type='text' name='prix'></input></td></tr>";
 		echo "<tr><td>Descriptif</td><td><input type='text' name='descriptif'></input></td></tr>";
-		
+
 		echo "<tr><td>Marque</td><td><select name='propriete' style='wnameth:145px'>";
 		while($row = mysqli_fetch_assoc($result2)){
 			echo "<option>".$row["libelle_prop"]."</option>";
 			}
 		echo "</select></td></tr>";
-		
-		
+
+
 		echo "<tr><td>Rubrique</td><td><select name='rubrique' style='wnameth:145px'>";
 		while($row = mysqli_fetch_assoc($result)){
 			echo "<option>".$row["LIBELLE_RUB"]."</option>";
 			}
-		
-		echo "</select></td></tr>";
-		
 
-		
+		echo "</select></td></tr>";
+
+
+
 		echo "<tr><td>Image</td><td><input id='file' name='file' type='file' multiple/></td></tr>";
-		echo "<tr><td><br/><input name='valider' type='submit' value='Valider'/></td></tr>";
+		echo "<tr><td><br/><input name='valider' type='submit' value='Valider' onclick='ajouterProdd();'/></td></tr>";
 		echo "</table>";
 		echo "</form>";
 		mysqli_close($mysqli);

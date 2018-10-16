@@ -6,9 +6,9 @@
 
   $host="127.0.0.1";
   $user="root";
-  $pass="root";
+  $pass="";
   $base="TaupeVelos";
   $id_user="0000";
-  //$port="3306";
-  $port="8889";
+  $port="3306";
+  //$port="8889";
 ?>

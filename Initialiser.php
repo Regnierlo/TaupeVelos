@@ -58,7 +58,7 @@
   `ID_COM` bigint(20) NOT NULL AUTO_INCREMENT,
   `ID_PROD` int(11) NOT NULL,
   `ETAT` int(1) NOT NULL,
-  `ID_CLIENT` int(11) NOT NULL,
+  `CLIENT` varchar(11) NOT NULL,
   `DATE` varchar(40) NOT NULL,
   `CIVILITE` varchar(4) NOT NULL,
   `NOM` varchar(40) NOT NULL,

@@ -60,7 +60,7 @@
   `ETAT` int(1) NOT NULL,
   `CLIENT` varchar(11) NOT NULL,
   `DATE` varchar(40) NOT NULL,
-  `CIVILITE` varchar(4) NOT NULL,
+  `CIVILITE` varchar(5) NOT NULL,
   `NOM` varchar(40) NOT NULL,
   `PRENOM` varchar(40) NOT NULL,
   `ADRESSE` varchar(160) NOT NULL,
